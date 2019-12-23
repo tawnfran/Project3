@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import React from 'react';
+// import guests from "./pages/guests";
+// import registry from "./pages/registry";
+// import toDo from "./pages/toDo";
+// import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+//     function App() {
+//       return (
+//         // <Router>
+//     //     //   <div>
+//     //     //     <Navbar />
+//     //     //     <Wrapper>
+//     //     //       <Route exact path="/" component={home} />
+//     //     //       <Route exact path="/guests" component={guests} />
+//     //     //       <Route exact path="/registry" component={registry} />
+//     //     //       <Route exact path="/toDo" component={toDo} />
+//     //     //     </Wrapper>
+//     //     //     <Footer />
+//     //     //   </div>
+//     //     // </Router>
+//     //   );
+//     // }
 
-export default App;
+
+// export default App;
