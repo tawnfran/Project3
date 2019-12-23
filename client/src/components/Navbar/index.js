@@ -6,37 +6,37 @@ import "./style.css";
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
-        Pupster
+      <Link className="navbar-brand" to="/home">
+        Wedding Planner
       </Link>
       <div>
         <ul className="navbar-nav">
           <li className="nav-item">
             <Link
-              to="/"
+              to="/guests"
               className={
-                window.location.pathname === "/" || window.location.pathname === "/about"
+                window.location.pathname === "/guests" || window.location.pathname === "/guests"
                   ? "nav-link active"
                   : "nav-link"
               }
             >
-              About
+              Guests 
             </Link>
           </li>
           <li className="nav-item">
             <Link
-              to="/discover"
-              className={window.location.pathname === "/discover" ? "nav-link active" : "nav-link"}
+              to="/registry"
+              className={window.location.pathname === "/registry" ? "nav-link active" : "nav-link"}
             >
-              Discover
+              Registry
             </Link>
           </li>
           <li className="nav-item">
             <Link
-              to="/search"
-              className={window.location.pathname === "/search" ? "nav-link active" : "nav-link"}
+              to="/toDos"
+              className={window.location.pathname === "/toDos" ? "nav-link active" : "nav-link"}
             >
-              Search
+              To Do's
             </Link>
           </li>
         </ul>
