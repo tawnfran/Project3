@@ -4,7 +4,11 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require("passport");
 const session = require("express-session");
-const bodyParser = require("body-parser");
+
+const user = require('./routes/user')
+
+
+// const bodyParser = require("body-parser");
 
 
 require("dotenv").config();
@@ -16,12 +20,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //For BodyParser
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
 // For Passport
  
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(session({ secret: 'keyboard cat',resave: false, saveUninitialized:false})); // session secret
+
  
 app.use(passport.initialize());
  
@@ -34,11 +39,26 @@ if (process.env.NODE_ENV === "production") {
 
 // Define API routes here
 
-app.get('/welcome', function(req, res) {
- 
-  res.send('Welcome to Passport with Sequelize');
 
+//log the req.session:
+app.use( (req, res, next) => {
+  console.log('req.session', req.session);
+  return next();
 });
+
+app.post('/user', (req, res) => {
+  console.log('user signup');
+  req.session.username = req.body.username;
+  res.end();
+})
+
+// app.use('/user', user);
+
+// app.get('/welcome', function(req, res) {
+ 
+//   res.send('Welcome to Passport with Sequelize');
+
+// });
 
 // Send every other request to the React app
 // Define any API routes before this runs

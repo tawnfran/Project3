@@ -27,7 +27,7 @@ class signup extends React.Component {
         console.log("sign-up-form, password:");
         console.log(this.state.password);
 
-        axios.post("/", {
+        axios.post("/user", {
             username: this.state.username,
             password: this.state.password
         })
