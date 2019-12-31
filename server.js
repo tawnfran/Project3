@@ -8,6 +8,15 @@ const session = require("express-session");
 const user = require('./routes/user')
 
 
+//DO I NEED
+//const dbConnection = require('./database')
+//OR SOMETHING LIKE IT?
+//???????
+//The tutorial says "database/index.js" opens the connection to mongo(sequelize for me)
+//But I don't have a "database" folder, and "models" lives in the root folder
+//(In the tutorial, "models" lives inside of "database")
+//So where should the index.js file go? Is it the one inside models?
+
 // const bodyParser = require("body-parser");
 
 
@@ -59,6 +68,25 @@ app.post('/user', (req, res) => {
 //   res.send('Welcome to Passport with Sequelize');
 
 // });
+
+//not sure if I need the below app.get and app.listen or not
+
+app.get('/test', function(req, res) {
+
+  console.log("Welcome to Passport with Sequelize");
+ 
+  res.send('Welcome to Passport with Sequelize');
+
+});
+
+
+app.listen(5000, function(err) {
+
+  if (!err)
+      console.log("Site is live");
+  else console.log(err)
+
+});
 
 // Send every other request to the React app
 // Define any API routes before this runs

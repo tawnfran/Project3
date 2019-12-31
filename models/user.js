@@ -1,20 +1,33 @@
+const bcrypt = require('bcryptjs');
+
+//Convert the following to Sequelize
+// userSchema.methods = {
+//   checkPassword: function (inputPassword) {
+//   return bcrypt.compareSync(inputPassword, this.password)
+// },
+//   hashPassword: plainTextPassword => {
+//   return bcrypt.hashSync(plainTextPassword, 10)
+//   }
+// }
+
+
 module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
+    var User = sequelize.define("user", {
         id: {
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER
         },
 
-        firstname: {
+        fullname: {
             type: DataTypes.STRING,
             notEmpty: true
         },
 
-        lastname: {
-            type: DataTypes.STRING,
-            notEmpty: true
-        },
+        // lastname: {
+        //     type: DataTypes.STRING,
+        //     notEmpty: true
+        // },
 
         username: {
             type: DataTypes.TEXT
