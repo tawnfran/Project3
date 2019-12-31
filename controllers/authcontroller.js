@@ -5,6 +5,7 @@ exports.signup = function(req, res) {
 };
 
 exports.signin = function(req, res) {
+  console.log("inside authcontroller.js, this ran")
   res.render("signin");
 };
 

@@ -8,6 +8,7 @@ import home from "./pages/home";
 import registry from "./pages/registry";
 import toDo from "./pages/toDo";
 import SignUp from "./pages/signup";
+import SignIn from "./pages/signin";
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/registry" component={registry} />
             <Route exact path="/toDo" component={toDo} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/signin" component={SignIn} />
           </Switch>          
 
         </Wrapper>

@@ -2,13 +2,11 @@
 import React from "react";
 import axios from "axios";
 
-class signup extends React.Component {
+class signin extends React.Component {
 
     state = {
         username: "",
         password: "",
-        fullname: "",
-        email: ""
     };
 
     // handle any changes to the input fields
@@ -24,14 +22,12 @@ class signup extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("sign-up-form, username:");
+        console.log("sign-in-form, username:");
         console.log(this.state.username);
-        console.log("sign-up-form, password:");
+        console.log("sign-in-form, password:");
         console.log(this.state.password);
 
         axios.post("/user", {
-            fullname: this.state.fullname,
-            email: this.state.email,
             username: this.state.username,
             password: this.state.password
         })
@@ -39,16 +35,16 @@ class signup extends React.Component {
                 console.log("This is response:");
                 console.log(response);
                 if (response.data) {
-                    console.log("successful signup");
+                    console.log("successful signin");
                     this.setState({
                         redirectTo: "/login"
                     })
                 }
                 else {
-                    console.log("Sign-up error")
+                    console.log("Sign-in error")
                 }
             }).catch(error => {
-                console.log("Sign up server error:");
+                console.log("Sign in server error:");
                 console.log(error);
             })
         // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
@@ -61,38 +57,11 @@ class signup extends React.Component {
             <div>
                 <form>
                     <div className="container">
-                        <p>Full name: {this.state.fullname}</p>
-                        <p>Email: {this.state.email}</p>
+                        
                         <p>Username: {this.state.username}</p>
                         <p>Password: {this.state.password}</p>
                         <div className="row">
                             <div className="col-md-4">
-                                <div>Full name: <input
-                                    type="text"
-                                    placeholder="Full name"
-                                    name="fullname"
-                                    value={this.state.fullname}
-                                    onChange={this.handleInputChange}
-                                />
-                                </div>
-                                {/* <input
-                        type="text"
-                        placeholder="Last Name"
-                        name="lastname"
-                        value={this.state.lastname}
-                        onChange={this.handleInputChange}
-                    /> */}
-                                <div>
-                                    Email Address:
-
-                                <input
-                                        type="text"
-                                        placeholder="Email"
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.handleInputChange}
-                                    />
-                                </div>
                                 <div>Username:
                                 <input
                                         type="text"
@@ -123,4 +92,4 @@ class signup extends React.Component {
         );
     }
 }
-export default signup;
+export default signin;

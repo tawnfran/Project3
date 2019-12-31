@@ -24,6 +24,9 @@ require("dotenv").config();
 
 var models = require("./models");
 
+//Routes
+var authRoute = require('./routes/auth.js')(app);
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
