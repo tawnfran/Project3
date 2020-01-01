@@ -9,8 +9,8 @@ module.exports = {
   },
   test: {
     username: "root",
-    password: null,
-    database: "testdb",
+    password: "password",
+    database: "guestlistedbdb",
     host: "localhost",
     dialect: "mysql",
     logging: false

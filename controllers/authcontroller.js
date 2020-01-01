@@ -40,13 +40,17 @@ exports.shelf = function(req, res) {
       })
       .then(function(dbUser) {
         var hbsObject = {
-          user: req.user,
+          // user: req.user,
+          // username: dbUser.username,
+          // firstname: dbUser.firstname,
+          // lastname: dbUser.lastname,
+          // image: dbUser.image
           username: dbUser.username,
-          firstname: dbUser.firstname,
-          lastname: dbUser.lastname,
-          image: dbUser.image
+          password: dbUser.password,
+          fullname: dbUser.fullname,
+          email: dbUser.email
         };
-        res.render("shelf", hbsObject);
+        res.render("signin", hbsObject);
       });
   }
 };

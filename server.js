@@ -1,12 +1,17 @@
+require("dotenv").config();
 const express = require("express");
+const session = require("express-session");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
+
+//Models
+var models = require("./models");
 const app = express();
 const passport = require("passport");
-const session = require("express-session");
 
-const user = require('./routes/user')
+// const user = require('./routes/user')
 
+const bodyParser = require("body-parser");
 
 //DO I NEED
 //const dbConnection = require('./database')
@@ -17,19 +22,23 @@ const user = require('./routes/user')
 //(In the tutorial, "models" lives inside of "database")
 //So where should the index.js file go? Is it the one inside models?
 
-// const bodyParser = require("body-parser");
+
+var user = require("./routes/auth")(app, passport);
+
+// app.use("/user", user);
 
 
-require("dotenv").config();
 
-var models = require("./models");
 
-//Routes
-var authRoute = require('./routes/auth.js')(app);
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+
+
+app.use(express.static("public"));
 
 //For BodyParser
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,9 +46,8 @@ app.use(express.json());
 
 // For Passport
  
-app.use(session({ secret: 'keyboard cat',resave: false, saveUninitialized:false})); // session secret
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized: true})); // session secret
 
- 
 app.use(passport.initialize());
  
 app.use(passport.session()); // persistent login sessions
@@ -49,22 +57,42 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+
+console.log("models.user is ");
+console.log(models.user);
 // Define API routes here
+//passport strategies
+
+require('./config/passport/passport.js')(passport, models.user);
+require("./routes/auth")(app, passport);
+
 
 
 //log the req.session:
-app.use( (req, res, next) => {
-  console.log('req.session', req.session);
-  return next();
-});
+// app.use( (req, res, next) => {
+//   console.log('req.session', req.session);
+//   return next();
+// });
 
-app.post('/user', (req, res) => {
-  console.log('user signup');
-  req.session.username = req.body.username;
-  res.end();
-})
+// app.get('/', function(req, res) {    
+//   res.send('Welcome to Passport with Sequelize and without HandleBars');
+// });
 
-// app.use('/user', user);
+// app.post('/user', (req, res) => {
+//   console.log('user signup');
+//   // console.log("Hi")
+//   // console.log("req is ");
+//   // console.log(req);
+//   // console.log("res is ");
+//   // console.log(res);
+//   console.log("req.body.username is:");
+//   console.log(req.body.username);
+//   req.session.username = req.body.username;
+//   console.log("req.session.username is ");
+//   console.log(req.session.username);
+//   res.end();
+// })
+
 
 // app.get('/welcome', function(req, res) {
  
@@ -74,13 +102,26 @@ app.post('/user', (req, res) => {
 
 //not sure if I need the below app.get and app.listen or not
 
-app.get('/test', function(req, res) {
 
-  console.log("Welcome to Passport with Sequelize");
+
+
+
+
+
+
+
+//  //routes
+// app.use('/user', user);
+
+
+
+// app.get('/test', function(req, res) {
+
+//   console.log("Welcome to Passport with Sequelize");
  
-  res.send('Welcome to Passport with Sequelize');
+//   res.send('Welcome to Passport with Sequelize');
 
-});
+// });
 
 
 app.listen(5000, function(err) {

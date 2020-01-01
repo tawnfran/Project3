@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcrypt-nodejs");
 
 //Convert the following to Sequelize
 // userSchema.methods = {
@@ -12,11 +12,18 @@ const bcrypt = require('bcryptjs');
 
 
 module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("user", {
+    var User = sequelize.define("User", {
         id: {
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER
+        },
+        username: {
+            type: DataTypes.TEXT
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
 
         fullname: {
@@ -29,9 +36,7 @@ module.exports = function (sequelize, DataTypes) {
         //     notEmpty: true
         // },
 
-        username: {
-            type: DataTypes.TEXT
-        },
+       
         email: {
             type: DataTypes.STRING,
             validate: {
@@ -39,10 +44,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
 
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+        
 
         // eslint-disable-next-line camelcase
         last_login: {
@@ -55,7 +57,31 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
+    // Creating a custom method for our User model. 
+    //This will check if an unhashed password entered by the 
+    //user can be compared to the hashed password stored in our database
+    User.prototype.validPassword = function (password) {
+        return bcrypt.compareSync(password, this.password);
+    };
+    // Hooks are automatic methods that run during various phases of the User Model lifecycle
+    // In this case, before a User is created, we will automatically hash their password
+
+    // User.hook("beforeCreate", function (user) {
+    //     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+    // });
+
+    User.beforeCreate(user => {
+        user.password = bcrypt.hashSync(
+            user.password,
+            bcrypt.genSaltSync(10),
+            null
+        );
+    });
+
 
     return User;
+
+
+
 }
 

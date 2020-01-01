@@ -27,22 +27,36 @@ class signin extends React.Component {
         console.log("sign-in-form, password:");
         console.log(this.state.password);
 
-        axios.post("/user", {
+        axios.post("/user/signin", {
             username: this.state.username,
             password: this.state.password
         })
             .then(response => {
                 console.log("This is response:");
                 console.log(response);
-                if (response.data) {
-                    console.log("successful signin");
+
+                if(response.status === 200){
+
+                    //update App.js state
+                    this.props.updateUser({
+                        loggedIn: true,
+                        username: response.data.username
+                    })
+                    //update the state to redirect to guests
                     this.setState({
-                        redirectTo: "/login"
+                        redirectTo: "/guests"
                     })
                 }
-                else {
-                    console.log("Sign-in error")
-                }
+
+                // if (response.data) {
+                //     console.log("successful signin");
+                //     this.setState({
+                //         redirectTo: "/login"
+                //     })
+                // }
+                // else {
+                //     console.log("Sign-in error")
+                // }
             }).catch(error => {
                 console.log("Sign in server error:");
                 console.log(error);
