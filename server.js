@@ -4,6 +4,8 @@ const session = require("express-session");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 
+
+
 //Models
 var models = require("./models");
 const app = express();
@@ -65,6 +67,10 @@ console.log(models.user);
 
 require('./config/passport/passport.js')(passport, models.user);
 require("./routes/auth")(app, passport);
+require("./routes/apiRoutes.js")(app);
+
+
+
 
 
 
@@ -124,6 +130,7 @@ require("./routes/auth")(app, passport);
 // });
 
 
+
 app.listen(5000, function(err) {
 
   if (!err)
@@ -134,10 +141,11 @@ app.listen(5000, function(err) {
 
 // Send every other request to the React app
 // Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 var syncOptions = { force: false };
+
 models.sequelize
   .sync()
   .then(function() {

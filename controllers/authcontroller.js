@@ -20,10 +20,10 @@ exports.dashboard = function(req, res) {
       .then(function(dbUser) {
         var hbsObject = {
           user: req.user,
+         fullname: dbUser.fullname,
           username: dbUser.username,
-          firstname: dbUser.firstname,
-          lastname: dbUser.lastname,
-          image: dbUser.image
+         email: dbUser.email,
+          password: dbUser.password
         };
         res.render("dashboard", hbsObject);
       });

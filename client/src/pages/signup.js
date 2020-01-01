@@ -2,7 +2,7 @@
 import React from "react";
 import axios from "axios";
 
-const bcrypt = require("bcrypt-nodejs");
+// const bcrypt = require("bcrypt-nodejs");
 
 class signup extends React.Component {
 
@@ -31,7 +31,7 @@ class signup extends React.Component {
         console.log("sign-up-form, password:");
         console.log(this.state.password);
 
-        axios.post("/signup", {
+        axios.post("/api/user", {
             username: this.state.username,
             password: this.state.password,
             fullname: this.state.fullname,
