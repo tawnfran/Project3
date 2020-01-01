@@ -6,7 +6,7 @@ module.exports = function(app){
     //get route
     // app.get("/");
 
-    app.post("/api/user", function(req, res) {
+    app.post("/api/signup", function(req, res) {
         console.log(req.body);
 
         console.log("req.body.fullname is " + req.body.fullname);

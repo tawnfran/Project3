@@ -1,15 +1,15 @@
 var db = require("../models");
 
-exports.signup = function(req, res) {
+exports.signup = function (req, res) {
   res.render("signup");
 };
 
-exports.signin = function(req, res) {
+exports.signin = function (req, res) {
   console.log("inside authcontroller.js, this ran")
   res.render("signin");
 };
 
-exports.dashboard = function(req, res) {
+exports.dashboard = function (req, res) {
   if (req.user) {
     db.user
       .findOne({
@@ -17,12 +17,12 @@ exports.dashboard = function(req, res) {
           id: req.user.id
         }
       })
-      .then(function(dbUser) {
+      .then(function (dbUser) {
         var hbsObject = {
           user: req.user,
-         fullname: dbUser.fullname,
+          fullname: dbUser.fullname,
           username: dbUser.username,
-         email: dbUser.email,
+          email: dbUser.email,
           password: dbUser.password
         };
         res.render("dashboard", hbsObject);
@@ -30,7 +30,7 @@ exports.dashboard = function(req, res) {
   }
 };
 
-exports.shelf = function(req, res) {
+exports.shelf = function (req, res) {
   if (req.user) {
     db.user
       .findOne({
@@ -38,7 +38,7 @@ exports.shelf = function(req, res) {
           id: req.user.id
         }
       })
-      .then(function(dbUser) {
+      .then(function (dbUser) {
         var hbsObject = {
           // user: req.user,
           // username: dbUser.username,
@@ -59,9 +59,9 @@ exports.shelf = function(req, res) {
 //   res.render("shelf");
 // };
 
-exports.logout = function(req, res) {
+exports.logout = function (req, res) {
   // eslint-disable-next-line no-unused-vars
-  req.session.destroy(function(err) {
+  req.session.destroy(function (err) {
     res.redirect("/signin");
   });
 };

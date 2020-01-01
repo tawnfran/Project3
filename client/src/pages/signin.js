@@ -27,12 +27,12 @@ class signin extends React.Component {
         console.log("sign-in-form, password:");
         console.log(this.state.password);
 
-        axios.post("/user/signin", {
+        axios.post("/api/signin", {
             username: this.state.username,
             password: this.state.password
         })
             .then(response => {
-                console.log("This is response:");
+                console.log("Login response:");
                 console.log(response);
 
                 if(response.status === 200){

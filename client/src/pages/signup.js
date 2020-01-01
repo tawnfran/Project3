@@ -1,6 +1,7 @@
 
 import React from "react";
 import axios from "axios";
+import { Link, Redirect, withRouter } from "react-router-dom";
 
 // const bcrypt = require("bcrypt-nodejs");
 
@@ -10,7 +11,8 @@ class signup extends React.Component {
         username: "",
         password: "",
         fullname: "",
-        email: ""
+        email: "",
+        isSignedUp: false
     };
 
     // handle any changes to the input fields
@@ -31,7 +33,7 @@ class signup extends React.Component {
         console.log("sign-up-form, password:");
         console.log(this.state.password);
 
-        axios.post("/api/user", {
+        axios.post("/api/signup", {
             username: this.state.username,
             password: this.state.password,
             fullname: this.state.fullname,
@@ -44,8 +46,11 @@ class signup extends React.Component {
                 console.log(response.data);
                 if (response.data) {
                     console.log("successful signup");
+                    console.log("The setstate thing ran");
                     this.setState({
-                        redirectTo: "/signin"
+                        
+                        isSignedUp: true
+                        // redirectTo: "/guests"
                     })
                 }
                 else {
@@ -61,6 +66,16 @@ class signup extends React.Component {
 
 
     render() {
+        if (this.state.isSignedUp) {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/guests",
+                  state: { from: this.props.location }
+                }}
+              />
+            );
+          }
         return (
             <div>
                 <form>
