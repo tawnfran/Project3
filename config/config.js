@@ -10,7 +10,7 @@ module.exports = {
   test: {
     username: "root",
     password: "password",
-    database: "guestlistedbdb",
+    database: "guestlistdb",
     host: "localhost",
     dialect: "mysql",
     logging: false

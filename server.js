@@ -67,7 +67,7 @@ console.log(models.user);
 
 require('./config/passport/passport.js')(passport, models.user);
 require("./routes/auth")(app, passport);
-require("./routes/apiRoutes.js")(app);
+require("./routes/signInRoutes")(app, passport);
 
 
 
