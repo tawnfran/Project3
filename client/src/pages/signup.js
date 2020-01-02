@@ -1,7 +1,7 @@
 
 import React from "react";
 import axios from "axios";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { Redirect} from "react-router-dom";
 
 // const bcrypt = require("bcrypt-nodejs");
 

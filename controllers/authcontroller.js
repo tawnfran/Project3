@@ -1,4 +1,7 @@
 var db = require("../models");
+// const passport = require("../config/passport/passport.js")
+// const LocalStrategy = require("passport-local").Strategy;
+const passport = require("passport");
 
 exports.signup = function (req, res) {
   res.render("signup");

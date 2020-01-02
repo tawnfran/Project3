@@ -1,12 +1,15 @@
 
 import React from "react";
 import axios from "axios";
+import {Redirect} from "react-router-dom";
+
 
 class signin extends React.Component {
 
     state = {
         username: "",
         password: "",
+        signedIn: false
     };
 
     // handle any changes to the input fields
@@ -39,7 +42,7 @@ class signin extends React.Component {
 
                     //update App.js state
                     this.props.updateUser({
-                        loggedIn: true,
+                        signedIn: true,
                         username: response.data.username
                     })
                     //update the state to redirect to guests
@@ -67,6 +70,16 @@ class signin extends React.Component {
 
 
     render() {
+        if (this.state.signedIn) {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/guests",
+                  state: { from: this.props.location }
+                }}
+              />
+            );
+          }
         return (
             <div>
                 <form>

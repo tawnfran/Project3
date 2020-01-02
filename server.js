@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 3001;
 //Models
 var models = require("./models");
 const app = express();
+// const passport = require("./config/passport/passport.js");
 const passport = require("passport");
+
+const LocalStrategy = require("passport-local");
 
 // const user = require('./routes/user')
 
@@ -25,7 +28,7 @@ const bodyParser = require("body-parser");
 //So where should the index.js file go? Is it the one inside models?
 
 
-var user = require("./routes/auth")(app, passport);
+var authRoute = require("./routes/auth.js")(app);
 
 // app.use("/user", user);
 
@@ -54,6 +57,10 @@ app.use(passport.initialize());
  
 app.use(passport.session()); // persistent login sessions
 
+//passport strategies
+
+require('./config/passport/passport.js')(passport, models.user);
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -63,9 +70,7 @@ if (process.env.NODE_ENV === "production") {
 console.log("models.user is ");
 console.log(models.user);
 // Define API routes here
-//passport strategies
 
-require('./config/passport/passport.js')(passport, models.user);
 require("./routes/auth")(app, passport);
 require("./routes/signInRoutes")(app, passport);
 
@@ -131,13 +136,13 @@ require("./routes/signInRoutes")(app, passport);
 
 
 
-app.listen(5000, function(err) {
+// app.listen(PORT, function(err) {
 
-  if (!err)
-      console.log("Site is live");
-  else console.log(err)
+//   if (!err)
+//       console.log("Site is live");
+//   else console.log(err)
 
-});
+// });
 
 // Send every other request to the React app
 // Define any API routes before this runs
