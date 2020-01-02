@@ -9,6 +9,7 @@ import registry from "./pages/registry";
 import toDo from "./pages/toDo";
 import './App.css';
 
+
 function App() {
   return (
     <Router>
