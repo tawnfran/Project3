@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React, { Component } from 'react';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import guests from "./pages/guests";
 import Navbar from "./components/Navbar";
 import Wrapper from "./components/Wrapper";
@@ -9,13 +9,60 @@ import registry from "./pages/registry";
 import toDo from "./pages/toDo";
 import SignUp from "./pages/signup";
 import SignIn from "./pages/signin";
+import axios from "axios";
 import './App.css';
 
-function App() {
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      username: null
+    }
+
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
+
+  componentDidMount() {
+    this.getUser()
+  }
+
+  updateUser (userObject) {
+    this.setState(userObject)
+  }
+
+  getUser() {
+    axios.get("/dashboard/").then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
+      }
+    })
+  }
+
+render() {
   return (
     <Router>
       <div>
-        <Navbar />
+      <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+        {/* greet user if logged in: */}
+        {this.state.loggedIn &&
+          <p>Join the party, {this.state.username}!</p>
+        }
         <Wrapper>
           <Switch>
             <Route exact path="/" component={home} />
@@ -31,6 +78,7 @@ function App() {
       </div>
     </Router>
   );
+}
 }
 
 export default App;

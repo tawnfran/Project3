@@ -19,17 +19,43 @@ module.exports = function(app){
 
     // app.post("/api/signin", passport.authenticate("passport-local"), function(req, res, err) {
 
-        app.post("/api/signin", passport.authenticate("local"), function(req, res, err) {
-            console.log("signInRoutes.js app.post /api/signin ran");
+    //     app.post("/api/signin", passport.authenticate("local"), function(req, res, err) {
+    //         console.log("signInRoutes.js app.post /api/signin ran");
 
 
         
-        // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
-        // So we're sending the user back the route to the members page because the redirect will happen on the front end
-        // They won't get this or even be able to access this page if they aren't authed
-        // console.log(`req user from the api/login route: ${req.user}`);
-        res.json(req.user);
-      });
+    //     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+    //     // So we're sending the user back the route to the members page because the redirect will happen on the front end
+    //     // They won't get this or even be able to access this page if they aren't authed
+    //     // console.log(`req user from the api/login route: ${req.user}`);
+    //     res.json(req.user);
+    //   });
+
+    app.post(
+        "/api/signin", 
+        function(req, res, next) {
+        console.log("signInRoutes.js app.post /api/signin ran, req.body is:");
+        console.log(req.body);
+        next()
+        }, 
+        passport.authenticate("local"), 
+        (req, res) => {
+            console.log("logged in", req.user);
+            var userInfo = {
+                username: req.user.username
+            };
+            res.send(userInfo);
+        }
+    )
+
+
+    
+    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+    // So we're sending the user back the route to the members page because the redirect will happen on the front end
+    // They won't get this or even be able to access this page if they aren't authed
+//     // console.log(`req user from the api/login route: ${req.user}`);
+//     res.json(req.user);
+//   });
     
 
     app.post("/api/signup", function(req, res) {
