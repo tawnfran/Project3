@@ -2,15 +2,18 @@
 import React from "react";
 import axios from "axios";
 import {Redirect} from "react-router-dom";
+import  "../App";
 
 
 class signin extends React.Component {
-
-    state = {
-        username: "",
-        password: "",
-        signedIn: false
-    };
+    constructor() {
+        super()
+        this.state = {
+            username: "",
+            password: "",
+            signedIn: false
+        };
+    }
 
     // handle any changes to the input fields
     handleInputChange = event => {
