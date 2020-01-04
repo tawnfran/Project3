@@ -26,6 +26,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log("componentDidMount ran");
     this.getUser()
   }
 
@@ -35,6 +36,7 @@ class App extends Component {
 
   getUser() {
     axios.get("/dashboard/").then(response => {
+      console.log("getuser() ran");
       console.log('Get user response: ')
       console.log(response.data)
       if (response.data.user) {
@@ -60,6 +62,7 @@ render() {
       <div>
       <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
+        Hi {this.state.username}
         {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>
         }

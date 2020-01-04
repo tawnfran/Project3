@@ -1,8 +1,8 @@
 
 import React from "react";
 import axios from "axios";
-import {Redirect} from "react-router-dom";
-import  "../App";
+import { Redirect } from "react-router-dom";
+import "../App";
 
 
 class signin extends React.Component {
@@ -11,7 +11,8 @@ class signin extends React.Component {
         this.state = {
             username: "",
             password: "",
-            signedIn: false
+            signedIn: false,
+            redirectTo: null
         };
     }
 
@@ -41,7 +42,7 @@ class signin extends React.Component {
                 console.log("Login response:");
                 console.log(response);
 
-                if(response.status === 200){
+                if (response.status === 200) {
 
                     //update App.js state
                     this.props.updateUser({
@@ -73,21 +74,27 @@ class signin extends React.Component {
 
 
     render() {
-        if (this.state.signedIn) {
+        if (this.state.redirectTo) {
             return (
-              <Redirect
-                to={{
-                  pathname: "/guests",
-                  state: { from: this.props.location }
-                }}
-              />
+                <Redirect
+                    to={{
+                        pathname: this.state.redirectTo,
+                        state: 
+                            {
+                                username: this.state.username
+                                // ,
+                                // fullname: this.state.fullname
+                            }
+                        ,
+                    }}
+                />
             );
-          }
+        }
         return (
             <div>
                 <form>
                     <div className="container">
-                        
+
                         <p>Username: {this.state.username}</p>
                         <p>Password: {this.state.password}</p>
                         <div className="row">

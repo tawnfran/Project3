@@ -1,6 +1,7 @@
 const db = require("../models");
 
 const passport = require("passport");
+const express = require("express");
 // const LocalStrategy = require("passport-local").Strategy;
 // const passport = require("../config/passport/passport.js");
 
@@ -82,5 +83,15 @@ module.exports = function(app){
 
         // })
     });
+
+
+    app.get('/dashboard/', (req, res, next) => {
+        console.log(req.user)
+        if (req.user) {
+            res.json({ user: req.user })
+        } else {
+            res.json({ user: null })
+        }
+    })
 
 }

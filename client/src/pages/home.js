@@ -10,7 +10,7 @@ class homePage extends React.Component {
     super()
     this.state = {
       username: "",
-      password: ""
+      fullname: ""
     }
 
     this.getUser();
