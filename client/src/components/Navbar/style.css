@@ -3,5 +3,13 @@ nav.navbar.navbar-default {
 }
 
 .navbar {
-  color: pink;
+  padding: 50px;
+  font-size: 25px;
+  
+
 }
+.navbar-brand {
+  font-size: 35px;
+}
+
+

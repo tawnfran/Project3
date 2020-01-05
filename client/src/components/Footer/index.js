@@ -4,7 +4,7 @@ import "./style.css";
 function Footer() {
   return (
     <footer className="footer">
-      <span>Wedding Planner 2019</span>
+      <span>Save The Date 2019</span>
     </footer>
   );
 }
