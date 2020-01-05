@@ -30,7 +30,7 @@ module.exports = function (app) {
 
     ));
 
-    app.get('/dashboard', authController.dashboard);
+    app.get('/user', authController.user);
 
     app.get('/logout', authController.logout);
 
@@ -38,7 +38,7 @@ module.exports = function (app) {
  
  
     app.post('/signin', passport.authenticate("local-signin", {
-            successRedirect: '/dashboard',
+            successRedirect: '/user',
  
             failureRedirect: '/signin'
         }

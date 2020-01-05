@@ -26,17 +26,30 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log("this.state is");
+    console.log(this.state);
     console.log("componentDidMount ran");
-    this.getUser()
+    this.getUser();
   }
 
+  // componentWillMount(){
+  //   console.log("componentWillMount ran");
+  //   this.getUser();
+  // }
+
   updateUser (userObject) {
-    this.setState(userObject)
+    this.setState(userObject);
   }
 
   getUser() {
-    axios.get("/dashboard/").then(response => {
-      console.log("getuser() ran");
+    console.log("getuser() ran");
+    axios.get("/user/").then(response => {
+
+      console.log("response was");
+      console.log(response);
+
+      console.log("***********");
+      
       console.log('Get user response: ')
       console.log(response.data)
       if (response.data.user) {
@@ -62,6 +75,8 @@ render() {
       <div>
       <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
         {/* greet user if logged in: */}
+        {this.state.loggedIn ? "Yes" : "No" }
+        {console.log("this.state.loggedIn is " + this.state.loggedIn)}
         Hi {this.state.username}
         {this.state.loggedIn &&
           <p>Join the party, {this.state.username}!</p>

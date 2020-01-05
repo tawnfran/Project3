@@ -20,7 +20,7 @@ class homePage extends React.Component {
 
 
   getUser() {
-  axios.get("/dashboard/").then(response => {
+  axios.get("/user/").then(response => {
     console.log('Get user response: ')
     console.log(response.data)
   })

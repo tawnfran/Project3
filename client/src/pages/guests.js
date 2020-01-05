@@ -26,9 +26,14 @@ then store response data into states
 
 */
 
+componentWillMount() {
+    this.getUser();
+}
+
+
 
     getUser() {
-        axios.get("/dashboard/").then(response => {
+        axios.get("/user/").then(response => {
             console.log('Get user response: ')
             console.log(response.data)
         })
@@ -54,7 +59,9 @@ render () {
                             <div className="container">
                                 {/* <p>Full name: {this.props.location.state.fullname}</p> */}
                                 {console.log(this.props)}
-                                <p>Username: {this.props.location.state.username}</p>
+                                {/* <p>Username: {this.props.location.state.username}</p> 
+                                */}
+                                <p>Username: {this.state.username}</p>
                             </div>
                         </div>
                         <div className="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>

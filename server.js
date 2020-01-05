@@ -89,20 +89,20 @@ require("./routes/signInRoutes")(app, passport);
 //   res.send('Welcome to Passport with Sequelize and without HandleBars');
 // });
 
-// app.post('/user', (req, res) => {
-//   console.log('user signup');
-//   // console.log("Hi")
-//   // console.log("req is ");
-//   // console.log(req);
-//   // console.log("res is ");
-//   // console.log(res);
-//   console.log("req.body.username is:");
-//   console.log(req.body.username);
-//   req.session.username = req.body.username;
-//   console.log("req.session.username is ");
-//   console.log(req.session.username);
-//   res.end();
-// })
+app.post('/user', (req, res) => {
+  console.log('user signup');
+  // console.log("Hi")
+  // console.log("req is ");
+  // console.log(req);
+  // console.log("res is ");
+  // console.log(res);
+  console.log("req.body.username is:");
+  console.log(req.body.username);
+  req.session.username = req.body.username;
+  console.log("req.session.username is ");
+  console.log(req.session.username);
+  res.end();
+})
 
 
 // app.get('/welcome', function(req, res) {

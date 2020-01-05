@@ -85,7 +85,8 @@ module.exports = function(app){
     });
 
 
-    app.get('/dashboard/', (req, res, next) => {
+    app.get('/user', (req, res, next) => {
+        console.log("Dashboard!");
         console.log(req.user)
         if (req.user) {
             res.json({ user: req.user })

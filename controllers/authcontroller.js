@@ -7,12 +7,12 @@ exports.signup = function (req, res) {
   res.render("signup");
 };
 
-exports.signin = function (req, res) {
-  console.log("inside authcontroller.js, this ran")
-  res.render("signin");
-};
+// exports.signin = function (req, res) {
+//   console.log("inside authcontroller.js, this ran")
+//   res.render("signin");
+// };
 
-exports.dashboard = function (req, res) {
+exports.user = function (req, res) {
   if (req.user) {
     db.user
       .findOne({
@@ -21,19 +21,19 @@ exports.dashboard = function (req, res) {
         }
       })
       .then(function (dbUser) {
-        var hbsObject = {
+        var userObject = {
           user: req.user,
           fullname: dbUser.fullname,
           username: dbUser.username,
           email: dbUser.email,
           password: dbUser.password
         };
-        res.render("dashboard", hbsObject);
+        res.render("user", userObject);
       });
   }
 };
 
-exports.shelf = function (req, res) {
+exports.signin = function (req, res) {
   if (req.user) {
     db.user
       .findOne({
@@ -42,7 +42,7 @@ exports.shelf = function (req, res) {
         }
       })
       .then(function (dbUser) {
-        var hbsObject = {
+        var userObject = {
           // user: req.user,
           // username: dbUser.username,
           // firstname: dbUser.firstname,
@@ -53,7 +53,7 @@ exports.shelf = function (req, res) {
           fullname: dbUser.fullname,
           email: dbUser.email
         };
-        res.render("signin", hbsObject);
+        res.render("signin", userObject);
       });
   }
 };
