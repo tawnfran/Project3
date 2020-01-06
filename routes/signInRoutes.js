@@ -41,9 +41,11 @@ module.exports = function(app){
         }, 
         passport.authenticate("local"), 
         (req, res) => {
-            console.log("logged in", req.user);
+            console.log("logged in, inside signInRoutes", req.user);
             var userInfo = {
-                username: req.user.username
+                username: req.user.username,
+                fullname: req.user.fullname,
+                id: req.user.id
             };
             res.send(userInfo);
         }
@@ -85,7 +87,7 @@ module.exports = function(app){
     });
 
 
-    app.get('/user', (req, res, next) => {
+    app.get("/user/", (req, res, next) => {
         console.log("Dashboard!");
         console.log(req.user)
         if (req.user) {

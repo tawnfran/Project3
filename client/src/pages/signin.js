@@ -47,7 +47,8 @@ class signin extends React.Component {
                     //update App.js state
                     this.props.updateUser({
                         signedIn: true,
-                        username: response.data.username
+                        username: response.data.username,
+                        fullname: response.data.fullname
                     })
                     //update the state to redirect to guests
                     this.setState({

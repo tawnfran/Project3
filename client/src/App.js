@@ -12,11 +12,12 @@ import SignIn from "./pages/signin";
 import axios from "axios";
 import './App.css';
 
+
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      loggedIn: false,
+      signedIn: false,
       username: null
     }
 
@@ -43,6 +44,9 @@ class App extends Component {
 
   getUser() {
     console.log("getuser() ran");
+
+
+    
     axios.get("/user/").then(response => {
 
       console.log("response was");
@@ -56,13 +60,13 @@ class App extends Component {
         console.log('Get User: There is a user saved in the server session: ')
 
         this.setState({
-          loggedIn: true,
+          signedIn: true,
           username: response.data.user.username
         })
       } else {
         console.log('Get user: no user');
         this.setState({
-          loggedIn: false,
+          signedIn: false,
           username: null
         })
       }
@@ -73,13 +77,12 @@ render() {
   return (
     <Router>
       <div>
-      <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
+      <Navbar updateUser={this.updateUser} signedIn={this.state.signedIn} />
         {/* greet user if logged in: */}
-        {this.state.loggedIn ? "Yes" : "No" }
-        {console.log("this.state.loggedIn is " + this.state.loggedIn)}
-        Hi {this.state.username}
-        {this.state.loggedIn &&
-          <p>Join the party, {this.state.username}!</p>
+        {this.state.signedIn ? "Signed In" : "Not Signed in" }
+        {console.log("this.state.loggedIn is " + this.state.signedIn)}
+        {this.state.signedIn &&
+          <p>Welcome, {this.state.username}!</p>
         }
         <Wrapper>
           <Switch>

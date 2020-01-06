@@ -61,7 +61,7 @@ render () {
                                 {console.log(this.props)}
                                 {/* <p>Username: {this.props.location.state.username}</p> 
                                 */}
-                                <p>Username: {this.state.username}</p>
+                                <p>Username: {this.props.location.state.username}</p>
                             </div>
                         </div>
                         <div className="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
