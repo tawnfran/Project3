@@ -88,18 +88,20 @@ module.exports = function(app){
 
 
     app.get("/user", (req, res, next) => {
-        console.log("Dashboard!");
+        console.log("req.user is");
         console.log(req.user)
         if (req.user) {
             res.json(req.user)
         } else {
-            res.json({username: "Not signed in-  from signinroutes"})
+            res.json({username: "Not signed in"})
         }
     })
 
     app.get("/signout", (req, res) => {
+        console.log("************* /signout ran");
         req.session.destroy(function (err) {
-            res.redirect("/signin");
+            console.log("SIGNING OUT");
+            res.send("Signed out");
           });
     })
 

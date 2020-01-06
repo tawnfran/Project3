@@ -69,6 +69,7 @@ module.exports = function (passport, user) {
                     username: username
                 }
             }).then(function (user) {
+                console.log("username was found");
 
                 if (user) {
 
