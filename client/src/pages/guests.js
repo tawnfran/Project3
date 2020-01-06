@@ -1,6 +1,47 @@
-import React from "react";
 
-function guests() {
+import React from "react";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
+import "../App";
+
+
+class Guests extends React.Component {
+    constructor() {
+        super()
+        // this.state = {
+        //     username: "",
+        //     fullname: ""
+        // }
+
+        // this.getUser();
+
+    }
+
+/*
+
+TODO: 
+have componentwillmount call an axios route to get a specific user
+the response from that call will contain all user information
+then store response data into states
+
+*/
+
+componentWillMount() {
+    this.getUser();
+}
+
+
+
+    getUser() {
+        axios.get("/user/").then(response => {
+            console.log('Get user response: ')
+            console.log(response.data)
+        })
+    }
+
+
+
+render () {
     return (
 
         <div className="container">
@@ -55,19 +96,38 @@ function guests() {
                 </div>
                 <div className="col-6">
                     <div className="tab-content" id="nav-tabContent">
+<<<<<<< HEAD
+                        <div className="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                            <div className="container">
+                                {/* <p>Full name: {this.props.location.state.fullname}</p> */}
+                                {console.log(this.props)}
+                                {/* <p>Username: {this.props.location.state.username}</p> 
+                                */}
+                                <p>Username: {this.props.location.state.username}</p>
+                            </div>
+                        </div>
+=======
                         <div className="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"></div>
+>>>>>>> 737ae72f3ad31c5c3dad68a2517665d4d44ea64d
                         <div className="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
                         <div className="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"> lorem  </div>
                         <div className="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
     )
 }
 
+<<<<<<< HEAD
+}
+
+
+export default Guests
+=======
 
 
 export default guests
+>>>>>>> 737ae72f3ad31c5c3dad68a2517665d4d44ea64d

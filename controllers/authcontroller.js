@@ -1,14 +1,18 @@
 var db = require("../models");
+// const passport = require("../config/passport/passport.js")
+// const LocalStrategy = require("passport-local").Strategy;
+const passport = require("passport");
 
-exports.signup = function(req, res) {
+exports.signup = function (req, res) {
   res.render("signup");
 };
 
-exports.signin = function(req, res) {
-  res.render("signin");
-};
+// exports.signin = function (req, res) {
+//   console.log("inside authcontroller.js, this ran")
+//   res.render("signin");
+// };
 
-exports.dashboard = function(req, res) {
+exports.user = function (req, res) {
   if (req.user) {
     db.user
       .findOne({
@@ -16,20 +20,20 @@ exports.dashboard = function(req, res) {
           id: req.user.id
         }
       })
-      .then(function(dbUser) {
-        var hbsObject = {
+      .then(function (dbUser) {
+        var userObject = {
           user: req.user,
+          fullname: dbUser.fullname,
           username: dbUser.username,
-          firstname: dbUser.firstname,
-          lastname: dbUser.lastname,
-          image: dbUser.image
+          email: dbUser.email,
+          password: dbUser.password
         };
-        res.render("dashboard", hbsObject);
+        res.render("user", userObject);
       });
   }
 };
 
-exports.shelf = function(req, res) {
+exports.signin = function (req, res) {
   if (req.user) {
     db.user
       .findOne({
@@ -37,15 +41,19 @@ exports.shelf = function(req, res) {
           id: req.user.id
         }
       })
-      .then(function(dbUser) {
-        var hbsObject = {
-          user: req.user,
+      .then(function (dbUser) {
+        var userObject = {
+          // user: req.user,
+          // username: dbUser.username,
+          // firstname: dbUser.firstname,
+          // lastname: dbUser.lastname,
+          // image: dbUser.image
           username: dbUser.username,
-          firstname: dbUser.firstname,
-          lastname: dbUser.lastname,
-          image: dbUser.image
+          password: dbUser.password,
+          fullname: dbUser.fullname,
+          email: dbUser.email
         };
-        res.render("shelf", hbsObject);
+        res.render("signin", userObject);
       });
   }
 };
@@ -54,9 +62,9 @@ exports.shelf = function(req, res) {
 //   res.render("shelf");
 // };
 
-exports.logout = function(req, res) {
+exports.logout = function (req, res) {
   // eslint-disable-next-line no-unused-vars
-  req.session.destroy(function(err) {
+  req.session.destroy(function (err) {
     res.redirect("/signin");
   });
 };
