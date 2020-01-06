@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/home">
-        Save The Date |
+        Save The Date | 
       </Link>
       <div>
         <ul className="navbar-nav">

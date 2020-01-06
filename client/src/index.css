@@ -2,8 +2,9 @@ body {
   margin: 0;
   font-family: 'Inria Serif', serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-size: 1300px;
 }
 
 code {
@@ -13,15 +14,12 @@ code {
 
 .container {
   padding: 25px;
-  
-  
 }
 
 .col-6 {
   padding-bottom: 25px;
   padding-top: 10px;
   background-origin: padding-box;
-
 }
 
 h1 {
@@ -46,5 +44,12 @@ h1 {
   padding-top: 30px;
 }
 
+#signinCardbody {
+  width: 50%;
+  
 
+}
 
+#registryInput {
+  width: 70%;
+}
