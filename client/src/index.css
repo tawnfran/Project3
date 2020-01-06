@@ -3,9 +3,48 @@ body {
   font-family: 'Inria Serif', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container {
+  padding: 25px;
+  
+  
+}
+
+.col-6 {
+  padding-bottom: 25px;
+  padding-top: 10px;
+  background-origin: padding-box;
+
+}
+
+h1 {
+  color: black;
+  align-content: center;
+  padding: 10px;
+}
+
+.button {
+  float: right;
+  width: 60px;
+}
+
+.tab-content {
+ font-size: 30px;
+
+}
+
+.input-group {
+  width: 50%;
+  margin-left: 50px;
+  padding-top: 30px;
+}
+
+
+

@@ -1,19 +1,35 @@
 import React from "react";
+// var cheerio = require("cheerio")
+// var axios = require("axios")
+
+// axios.get("https://www.amazon.com/s?k=silverware&ref=nb_sb_noss_2").then(function(response) {
+//   var $ = cheerio.load(response.data);
+//   var results = [];
+
+//   $("h1").each(function(i, element) {
+
+//     var title = $(element).text();
+//     var link = $(element).children().attr("href");
+
+//     results.push({
+//       title: title,
+//       link: link
+//     });
+//   });
+//   console.log(results);
+// });
 
 function registry() {
     return (
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet diam tortor, id
-        consequat mauris ullamcorper eu. Orci varius natoque penatibus et magnis dis
-        parturient montes, nascetur ridiculus mus. Pellentesque et dui id justo finibus
-        sollicitudin at et metus. Ut feugiat tellus nec metus commodo, sed suscipit nisi
-        gravida. Duis eget vestibulum quam, ut porttitor sem. Donec sagittis mi sollicitudin
-        turpis semper, et interdum risus lobortis. Vestibulum suscipit nunc non egestas
-        tristique. Proin hendrerit efficitur malesuada. Mauris lorem urna, sodales accumsan
-        quam non, tristique tempor erat. Nullam non sem facilisis, tempus tortor sit amet,
-        volutpat nisl. Ut et turpis non nunc maximus mollis a vitae tortor. Pellentesque
-        mattis risus ac quam laoreet cursus. Praesent suscipit orci neque, vestibulum
-        tincidunt augue tincidunt non. Duis consequat mattis tortor vitae mattis.
+      <div className="container">
+        <h1>Registry</h1>
+        <div className="input-group mb-3">
+        <input type="text" className="form-control" placeholder="Add Gifts" aria-label="Add Gifts" aria-describedby="button-addon2"/>
+        <div className="input-group-append">
+      <button className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+    </div>
+    </div>
+      
       </div>
     );
   }
