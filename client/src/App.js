@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import guests from "./pages/guests";
 import Navbar from "./components/Navbar";
 import Wrapper from "./components/Wrapper";
@@ -18,7 +18,8 @@ class App extends Component {
     super()
     this.state = {
       signedIn: false,
-      username: null
+      username: null, 
+      redirectTo: null
     }
 
     this.getUser = this.getUser.bind(this)
@@ -38,7 +39,7 @@ class App extends Component {
   //   this.getUser();
   // }
 
-  updateUser (userObject) {
+  updateUser(userObject) {
     this.setState(userObject);
   }
 
@@ -46,14 +47,14 @@ class App extends Component {
     console.log("getuser() ran");
 
 
-    
+
     axios.get("/user").then(response => {
 
       console.log("response was");
       console.log(response);
 
       console.log("************");
-      
+
       console.log('Get user response: ')
       console.log(response.data)
       if (response.data.username !== "Not signed in") {
@@ -73,39 +74,84 @@ class App extends Component {
     })
   }
 
-render() {
-  return (
-    <Router>
-      <div>
-      <Navbar updateUser={this.updateUser} signedIn={this.state.signedIn} />
-        {/* greet user if logged in: */}
-        {this.state.signedIn ? "Signed In" : "Not Signed in" }
-        {console.log("this.state.loggedIn is " + this.state.signedIn)}
-        {this.state.signedIn &&
-          <p>Welcome, {this.state.username}!</p>
-        }
-        <Wrapper>
-          <Switch>
-            <Route exact path="/" component={home} />
-            <Route exact path="/guests" component={guests} />
-            <Route exact path="/registry" component={registry} />
-            <Route exact path="/toDo" component={toDo} />
-            <Route exact path="/signup" component={SignUp} />
-            {/* <Route exact path="/signin" component={SignIn} /> */}
-            <Route
-          path="/signin"
-          render={() =>
-            <SignIn
-              updateUser={this.updateUser}
-            />}
-        />
-          </Switch>          
-        </Wrapper>
-        <Footer />
-      </div>
-    </Router>
-  );
+  handleSignout = event => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault();
+
+    // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
+    // alert(`Hello ${this.state.fullname}, you clicked the Sign Out button!`);
+    axios.get("/signout").then(response => {
+
+      console.log("response was");
+      console.log(response);
+      // this.props.updateUser({
+      //   loggedIn: false,
+      //   username: null
+      // });
+
+      this.setState({
+        redirectTo: "/signin",
+        signedIn: false
+      })
+    })
+  };
+
+  render() {
+  // //   if(this.state.redirectTo) {
+  //   if(!this.state.signedIn) {
+  //     return (
+  //       <Router>
+  //         <Route
+  //               path="/signin"
+  //               // component={SignIn}
+  //               render={() =>
+  //                 <SignIn
+  //                   updateUser={this.updateUser}
+  //                 />}
+  //     // <Redirect to = {{ pathname: "/signin"}}
+  //     />
+  //     </Router>
+  //     )
+     
+    // }
+    // else {
+    return (
+      <Router>
+        <div>
+          <Navbar updateUser={this.updateUser} signedIn={this.state.signedIn} />
+          {/* greet user if logged in: */}
+          {this.state.signedIn ? "Signed In" : "Not Signed in"}
+          {console.log("this.state.loggedIn is " + this.state.signedIn)}
+          {this.state.signedIn &&
+            <p>Welcome, {this.state.username}!</p>
+          }
+          {this.state.signedIn &&
+            <p><button onClick={this.handleSignout}>Sign Out</button></p>
+          }
+          <Wrapper>
+            <Switch>
+              <Route exact path="/" component={home} />
+              <Route exact path="/guests" component={guests} />
+              <Route exact path="/registry" component={registry} />
+              <Route exact path="/toDo" component={toDo} />
+              <Route exact path="/signup" component={SignUp} />
+              {/* <Route exact path="/signin" component={SignIn} /> */}
+              <Route
+                path="/signin"
+                // component={SignIn}
+                render={() =>
+                  <SignIn
+                    updateUser={this.updateUser}
+                  />}
+              />
+            </Switch>
+          </Wrapper>
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
 }
-}
+// }
 
 export default App;

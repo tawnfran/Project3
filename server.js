@@ -71,7 +71,7 @@ console.log("models.user is ");
 console.log(models.user);
 // Define API routes here
 
-require("./routes/auth")(app, passport);
+// require("./routes/auth")(app, passport);
 require("./routes/signInRoutes")(app, passport);
 
 

@@ -67,6 +67,7 @@ module.exports = function (passport, user) {
             db.User.findOne({
                 where: {
                     username: username
+                    // id: 1
                 }
             }).then(function (user) {
                 console.log("username was found");
