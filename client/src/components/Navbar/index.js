@@ -39,6 +39,14 @@ function Navbar() {
               To Do's
             </Link>
           </li>
+          <li className="nav-item" id="signout">
+            <Link
+              to="/signin"
+              className={window.location.pathname === "/signin" ? "nav-link active" : "nav-link"}
+            >
+              Sign Out
+            </Link>
+            </li>
         </ul>
       </div>
     </nav>

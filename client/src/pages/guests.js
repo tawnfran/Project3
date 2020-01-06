@@ -44,8 +44,6 @@ componentWillMount() {
         })
     }
 
-
-
 render () {
     // if (this.state.redirectTo) {
     //     return (
@@ -64,8 +62,17 @@ render () {
     //     );
     // }
     return (
-
         <div className="container">
+            <div class="jumbotron">
+        <h1 class="display-4">Welcome to your Guestlist!</h1>
+        <p class="lead">If you have already created a guestlist on Save The Date, click view to manage to view and edit your list.</p>
+            <hr class="my-4"/>
+            <p>If you are new to our site, click create a guestlist to get started!</p>
+        <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">View Guestlist</a><div class="divider"/>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Create New Guestlist</a>
+  </p>
+</div>
             <h1 className="header">Your Guests</h1>
             <div className="row">
                 <div className="col-6">
