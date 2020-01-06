@@ -93,28 +93,47 @@ class App extends Component {
         redirectTo: "/signin",
         signedIn: false
       })
+      window.location.reload();
     })
   };
 
   render() {
-  // //   if(this.state.redirectTo) {
+    if(this.state.redirectTo) {
   //   if(!this.state.signedIn) {
-  //     return (
-  //       <Router>
-  //         <Route
-  //               path="/signin"
-  //               // component={SignIn}
-  //               render={() =>
-  //                 <SignIn
-  //                   updateUser={this.updateUser}
-  //                 />}
-  //     // <Redirect to = {{ pathname: "/signin"}}
-  //     />
-  //     </Router>
-  //     )
+      return (
+        <Router>
+          <Redirect
+                path="/signin"
+                component={SignIn}
+                // render={() =>
+                //   <SignIn
+                //     updateUser={this.updateUser}
+                //   />}
+      // <Redirect to = {{ pathname: "/signin"}}
+      />
+      </Router>
+      )
      
+    }
+    else {
+    //   if (this.state.redirectTo) {
+    //     return (
+    //       <Router>
+    //         <Redirect
+    //             to={{
+    //                 pathname: this.state.redirectTo,
+    //                 state: 
+    //                     {
+    //                         username: this.state.username
+    //                         // ,
+    //                         // fullname: this.state.fullname
+    //                     }
+    //                 ,
+    //             }}
+    //         />
+    //         </Router>
+    //     );
     // }
-    // else {
     return (
       <Router>
         <div>
@@ -130,7 +149,11 @@ class App extends Component {
           }
           <Wrapper>
             <Switch>
-              <Route exact path="/" component={home} />
+              <Route exact path="/"  render={() =>
+                  <SignIn
+                    updateUser={this.updateUser}
+                  />}
+                  />
               <Route exact path="/guests" component={guests} />
               <Route exact path="/registry" component={registry} />
               <Route exact path="/toDo" component={toDo} />
@@ -152,6 +175,6 @@ class App extends Component {
     );
   }
 }
-// }
+}
 
 export default App;
