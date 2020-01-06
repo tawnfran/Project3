@@ -1,5 +1,5 @@
-CREATE DATABASE cocktailsdb;
-USE cocktailsdb;
+CREATE DATABASE guestlistdb;
+USE guestlistsdb;
 
 
 

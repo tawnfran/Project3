@@ -87,14 +87,22 @@ module.exports = function(app){
     });
 
 
-    app.get("/user/", (req, res, next) => {
-        console.log("Dashboard!");
+    app.get("/user", (req, res, next) => {
+        console.log("req.user is");
         console.log(req.user)
         if (req.user) {
-            res.json({ user: req.user })
+            res.json(req.user)
         } else {
-            res.json({ user: null })
+            res.json({username: "Not signed in"})
         }
+    })
+
+    app.get("/signout", (req, res) => {
+        console.log("************* /signout ran");
+        req.session.destroy(function (err) {
+            console.log("SIGNING OUT");
+            res.send("Signed out");
+          });
     })
 
 }

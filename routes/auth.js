@@ -30,9 +30,9 @@ module.exports = function (app) {
 
     ));
 
-    app.get('/user', authController.user);
+    // app.get('/user', authController.user);
 
-    app.get('/logout', authController.logout);
+    // app.get('/logout', authController.logout);
 
     app.get("/signin", authController.signin);
  
