@@ -87,14 +87,20 @@ module.exports = function(app){
     });
 
 
-    app.get("/user/", (req, res, next) => {
+    app.get("/user", (req, res, next) => {
         console.log("Dashboard!");
         console.log(req.user)
         if (req.user) {
-            res.json({ user: req.user })
+            res.json(req.user)
         } else {
-            res.json({ user: null })
+            res.json({username: "Not signed in-  from signinroutes"})
         }
+    })
+
+    app.get("/signout", (req, res) => {
+        req.session.destroy(function (err) {
+            res.redirect("/signin");
+          });
     })
 
 }

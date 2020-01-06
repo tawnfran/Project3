@@ -4,7 +4,6 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 import "../App";
 
-<<<<<<< HEAD
 
 class homePage extends React.Component {
   constructor() {
@@ -80,14 +79,6 @@ class homePage extends React.Component {
       </div>
     );
   }
-=======
-function home() {
-  return (
-    <div className= "container">
-      <h1>hshshs</h1>
-    </div>
-  );
->>>>>>> 737ae72f3ad31c5c3dad68a2517665d4d44ea64d
 }
 
 
