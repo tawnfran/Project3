@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
-=======
-
-import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
->>>>>>> 737ae72f3ad31c5c3dad68a2517665d4d44ea64d
 import guests from "./pages/guests";
 import Navbar from "./components/Navbar";
 import Wrapper from "./components/Wrapper";
@@ -112,37 +106,6 @@ render() {
     </Router>
   );
 }
-<<<<<<< HEAD
 }
-=======
-
-// const App = () => {
-//   return (
-//     <div className="container">
-//       <h1>Test</h1>
-//       <div className="flex-row">
-//         <div className="flex-large">
-//           <h2>Add Guest</h2>
-//         </div>
-//         <div className="flex-large">
-//           <h2>View Guests</h2>
-//           <guestsTable />
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
-// class App extends Component {
-//   initialState = {
-//       name: "",
-//       attending: false,
-//   }
-//   state = initialState
-//   updateGuest = guest => {
-//       this.setState({name: guest.name, attending: guest.attending})
-//   }
-// }
->>>>>>> 737ae72f3ad31c5c3dad68a2517665d4d44ea64d
 
 export default App;
