@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
 import guests from "./pages/guests";
 import Navbar from "./components/Navbar";
 import Wrapper from "./components/Wrapper";
@@ -147,6 +147,8 @@ class App extends Component {
           {this.state.signedIn &&
             <p><button onClick={this.handleSignout}>Sign Out</button></p>
           }
+          {!this.state.signedIn && 
+          <p><Link className="sign-in-link" to="/signin" > Sign in</Link></p>}
           <Wrapper>
             <Switch>
               <Route exact path="/"  render={() =>
