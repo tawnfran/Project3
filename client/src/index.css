@@ -45,11 +45,30 @@ h1 {
 }
 
 #signinCardbody {
-  width: 50%;
+  width: 38%;
   
 
 }
 
 #registryInput {
   width: 70%;
+}
+
+#signInForm {
+  width: 38%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 25px;
+}
+
+.btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.divider {
+  width:15px;
+  height:auto;
+  display:inline-block;
 }

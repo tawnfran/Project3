@@ -91,7 +91,7 @@ render() {
             <Route exact path="/registry" component={registry} />
             <Route exact path="/toDo" component={toDo} />
             <Route exact path="/signup" component={SignUp} />
-            {/* <Route exact path="/signin" component={SignIn} /> */}
+            <Route exact path="/signin" component={SignIn} />
             <Route
           path="/signin"
           render={() =>

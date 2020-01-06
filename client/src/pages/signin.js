@@ -80,12 +80,12 @@ class signin extends React.Component {
                 <Redirect
                     to={{
                         pathname: this.state.redirectTo,
-                        state: 
-                            {
-                                username: this.state.username
-                                // ,
-                                // fullname: this.state.fullname
-                            }
+                        state:
+                        {
+                            username: this.state.username
+                            // ,
+                            // fullname: this.state.fullname
+                        }
                         ,
                     }}
                 />
@@ -93,14 +93,19 @@ class signin extends React.Component {
         }
         return (
             <div>
-                <form>
+                <div className="card" id="signInForm">
+                    <div className="card-header">
+                        Sign In
+                    </div>
+                    <div className="card-body">
+                        <form>
                     <div className="container">
 
-                        <p>Username: {this.state.username}</p>
-                        <p>Password: {this.state.password}</p>
+                        {/* <p>Username: {this.state.username}</p>
+                        <p>Password: {this.state.password}</p> */}
                         <div className="row">
                             <div className="col-md-4">
-                                <div>Username:
+                                <div class="input-group">Username:
                                 <input
                                         type="text"
                                         placeholder="Username"
@@ -109,7 +114,7 @@ class signin extends React.Component {
                                         onChange={this.handleInputChange}
                                     />
                                 </div>
-                                <div>
+                                <div class="input-group">
                                     Password:
 
                                 <input
@@ -121,11 +126,12 @@ class signin extends React.Component {
                                     />
                                 </div>
                             </div>
-
                         </div>
-                        <button onClick={this.handleFormSubmit}>Submit</button>
                     </div>
+                    <button className="btn btn-lg btn-primary" onClick={this.handleFormSubmit}>Enter</button>
                 </form>
+                    </div>
+                </div>
             </div>
         );
     }
