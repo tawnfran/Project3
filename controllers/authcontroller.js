@@ -28,8 +28,13 @@ exports.user = function (req, res) {
           email: dbUser.email,
           password: dbUser.password
         };
-        res.render("user", userObject);
+        res.json(userObject);
       });
+  }
+  else {
+    res.json({
+      username: "Not signed in   -from authcontroller"
+    })
   }
 };
 

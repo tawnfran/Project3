@@ -8,12 +8,11 @@ import "../App";
 class Guests extends React.Component {
     constructor() {
         super()
-        // this.state = {
-        //     username: "",
-        //     fullname: ""
-        // }
-
-        // this.getUser();
+        this.state = {
+            username: "",
+            fullname: "",
+            id: null
+        }
 
     }
 
@@ -36,6 +35,12 @@ componentWillMount() {
         axios.get("/user/").then(response => {
             console.log('Get user response: ')
             console.log(response.data)
+            this.setState({
+                username: response.data.username,
+                fullname: response.data.fullname,
+                id: response.data.id
+
+            }, () => console.log(this.state));
         })
     }
 
@@ -99,10 +104,11 @@ render () {
                         <div className="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                             <div className="container">
                                 {/* <p>Full name: {this.props.location.state.fullname}</p> */}
+                                {console.log("this.props is")}
                                 {console.log(this.props)}
-                                {/* <p>Username: {this.props.location.state.username}</p> 
-                                */}
-                                <p>Username: {this.props.location.state.username}</p>
+                                {/* <p>Username: {this.props.location.state.username}</p>  */}
+                               
+                                {/* <p>Username: {this.props.location.state.username}</p> */}
                             </div>
                         </div>
                         <div className="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>

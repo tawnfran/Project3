@@ -19,7 +19,8 @@ import React from "react";
 //   console.log(results);
 // });
 
-function registry() {
+class Registry extends React.Component {
+  render() {
     return (
       <div className="container">
         <h1>Registry</h1>
@@ -43,6 +44,7 @@ function registry() {
       </div>
     );
   }
-  
-  export default registry;
+}
+
+  export default Registry;
   
