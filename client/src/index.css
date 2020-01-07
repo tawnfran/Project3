@@ -72,3 +72,7 @@ h1 {
   height:auto;
   display:inline-block;
 }
+
+.jumbotron {
+  color: white .75;
+}

@@ -4,6 +4,7 @@ import guests from "./pages/guests";
 import Navbar from "./components/Navbar";
 import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
+import Jumbotron from "./components/jumbotron"
 import home from "./pages/home";
 import registry from "./pages/registry";
 import toDo from "./pages/toDo";
