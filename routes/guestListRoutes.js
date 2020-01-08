@@ -23,8 +23,7 @@ module.exports = function(app){
               RSVP: req.body.RSVP,
               meal: req.body.meal,
               plusOne: req.body.plusOne,
-              whoseList: whoseList,
-
+              whoseList: whoseList
           })
             .then(function () {
                 console.log("New guest added!");
