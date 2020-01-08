@@ -84,6 +84,12 @@ class Guests extends React.Component {
         axios.get("/api/retrieveGuests").then(response => {
             console.log("getGuestlist() response is: ");
             console.log(response);
+            let guestlist = response.data;
+            console.log("guestlist is: ");
+            console.log(guestlist);
+        }).catch(error => {
+            console.log("Guestlist retrieval error:");
+            console.log(error);
         })
 
     }
@@ -117,7 +123,7 @@ class Guests extends React.Component {
                     <hr class="my-4" />
                     <p>If you are new to our site, click create a guestlist to get started!</p>
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">View Guestlist</a><div class="divider" />
+                        <a class="btn btn-primary btn-lg" href="#" role="button" onClick={this.getGuestlist}>View Guestlist</a><div class="divider" />
                         <a class="btn btn-primary btn-lg" href="#" role="button">Create New Guestlist</a>
                     </p>
                 </div>
