@@ -150,6 +150,8 @@ app.post('/user', (req, res) => {
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
+app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
+
 var syncOptions = { force: false };
 
 models.sequelize
