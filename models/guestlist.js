@@ -1,5 +1,5 @@
 module.exports = function (sequelize, Sequelize) {
-    var Guestlist = sequelize.define("guestlist", {
+    var Guestlist = sequelize.define("Guestlist", {
         id: {
             autoIncrement: true,
             primaryKey: true,

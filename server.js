@@ -73,6 +73,7 @@ console.log(models.user);
 
 // require("./routes/auth")(app, passport);
 require("./routes/signInRoutes")(app, passport);
+require("./routes/guestListRoutes")(app, passport);
 
 
 
