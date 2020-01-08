@@ -1,12 +1,22 @@
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
-const app = express();
+const session = require("express-session");
+const path = require("path");
 const PORT = process.env.PORT || 3001;
 
 
 
+//Models
+var models = require("./models");
+const app = express();
+// const passport = require("./config/passport/passport.js");
+const passport = require("passport");
 
+const LocalStrategy = require("passport-local");
+
+// const user = require('./routes/user')
+
+const bodyParser = require("body-parser");
 
 //DO I NEED
 //const dbConnection = require('./database')
@@ -18,6 +28,7 @@ const PORT = process.env.PORT || 3001;
 //So where should the index.js file go? Is it the one inside models?
 
 
+var authRoute = require("./routes/auth.js")(app);
 
 // app.use("/user", user);
 
@@ -28,18 +39,27 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+
+
 app.use(express.static("public"));
 
-// For Passport
+//For BodyParser
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
-//Models
-var models = require("./models");
-const session = require("express-session");
-const passport = require("./config/passport/passport.js");
-app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
+// For Passport
+ 
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized: true})); // session secret
 
 app.use(passport.initialize());
+ 
 app.use(passport.session()); // persistent login sessions
+
+//passport strategies
+
+require('./config/passport/passport.js')(passport, models.user);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -47,12 +67,13 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-var routes = require('./routes');
-app.use(routes)
+console.log("models.user is ");
+console.log(models.user);
+// Define API routes here
 
 // require("./routes/auth")(app, passport);
-// require("./routes/auth.js")(app);
-// require("./routes/signInRoutes")(app, passport);
+require("./routes/signInRoutes")(app, passport);
+require("./routes/guestListRoutes")(app, passport);
 
 
 
@@ -86,7 +107,7 @@ app.post('/user', (req, res) => {
 
 
 // app.get('/welcome', function(req, res) {
-
+ 
 //   res.send('Welcome to Passport with Sequelize');
 
 // });
@@ -109,7 +130,7 @@ app.post('/user', (req, res) => {
 // app.get('/test', function(req, res) {
 
 //   console.log("Welcome to Passport with Sequelize");
-
+ 
 //   res.send('Welcome to Passport with Sequelize');
 
 // });
@@ -131,15 +152,21 @@ app.post('/user', (req, res) => {
 // });
 var syncOptions = { force: false };
 
-models.sequelize.sync(syncOptions)
-  .then(function () {
-    app.listen(PORT, function () {
+models.sequelize
+  .sync()
+  .then(function() {
+    console.log("Nice! Database looks fine");
+  })
+  .catch(function(err) {
+    console.log(err, "Something went wrong with the Database Update!");
+  });
+
+  models.sequelize.sync(syncOptions).then(function() {
+    app.listen(PORT, function() {
       console.log(
         "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
         PORT,
         PORT
       );
     });
-  }).catch(function (err) {
-    console.log(err, "Something went wrong with the Database Update!");
-  });;
+  });

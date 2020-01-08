@@ -1,4 +1,23 @@
 import React from "react";
+// var cheerio = require("cheerio")
+// var axios = require("axios")
+
+// axios.get("https://www.amazon.com/s?k=silverware&ref=nb_sb_noss_2").then(function(response) {
+//   var $ = cheerio.load(response.data);
+//   var results = [];
+
+//   $("h1").each(function(i, element) {
+
+//     var title = $(element).text();
+//     var link = $(element).children().attr("href");
+
+//     results.push({
+//       title: title,
+//       link: link
+//     });
+//   });
+//   console.log(results);
+// });
 
 class Registry extends React.Component {
   render() {
