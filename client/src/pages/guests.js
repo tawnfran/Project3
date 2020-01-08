@@ -15,7 +15,10 @@ class Guests extends React.Component {
             username: "",
             fullname: "",
             id: null,
-            show: false
+            display: {
+                view: false,
+                create: false
+            }
         }
 
     }
@@ -31,15 +34,15 @@ class Guests extends React.Component {
 
     showGuestList() {
         console.log("changing state")
-        this.setState({ show: true })
+        this.setState({ display: { view: !this.state.display.view, create: false } })
     }
 
     createGuestList() {
         console.log("changing state!!")
-        this.setState({ show: true })
+        this.setState({ display: { view: false, create: !this.state.display.create } })
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getUser();
     }
 
@@ -77,42 +80,19 @@ class Guests extends React.Component {
         //         />
         //     );
         // }
-        if (this.state.show) {
-            return (
-                <div className="container">
+        return (
+            <div className="container">
 
-                    <Jumbotron />
+                <Jumbotron
+                    showGuestList={() => this.showGuestList()}
+                    createGuestList={() => this.createGuestList()}
+                />
 
-                    <ViewGuestList />
-                    <CreateGuestList />
+                {this.state.display.view && <ViewGuestList />}
+                {this.state.display.create && <CreateGuestList />}
 
-                    {/* <viewBtn 
-                    onClick={this.ViewGuestList}
-                    >
-                        
-                    </viewBtn> */}
-
-                </div>
-            )
-        } else {
-            return (
-                <div className="container">
-    
-                    <Jumbotron
-                        showGuestList={() => this.showGuestList()}
-                        createGuestList={() => this.createGuestList()}
-                    >
-                        </Jumbotron>
-                    {/* <viewBtn 
-                        onClick={this.ViewGuestList}
-                        >
-                            
-                        </viewBtn> */}
-
-    
-                </div>
-            )
-        }
+            </div>
+        )
     }
 
 }

@@ -15,18 +15,23 @@ import './App.css';
 
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      signedIn: false,
-      username: null, 
-      redirectTo: null
-    }
-
-    this.getUser = this.getUser.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
-    this.updateUser = this.updateUser.bind(this)
+  state = {
+    signedIn: false,
+    username: null,
+    redirectTo: null
   }
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     signedIn: false,
+  //     username: null, 
+  //     redirectTo: null
+  //   }
+
+  //   this.getUser = this.getUser.bind(this)
+  //   this.componentDidMount = this.componentDidMount.bind(this)
+  //   this.updateUser = this.updateUser.bind(this)
+  // }
 
   componentDidMount() {
     console.log("this.state is");
@@ -40,11 +45,11 @@ class App extends Component {
   //   this.getUser();
   // }
 
-  updateUser(userObject) {
+  updateUser = (userObject) => {
     this.setState(userObject);
   }
 
-  getUser() {
+  getUser = () => {
     console.log("getuser() ran");
 
 
@@ -99,83 +104,89 @@ class App extends Component {
   };
 
   render() {
-    if(this.state.redirectTo) {
-  //   if(!this.state.signedIn) {
+    if (this.state.redirectTo) {
+      //   if(!this.state.signedIn) {
       return (
         <Router>
           <Redirect
-                path="/signin"
-                component={SignIn}
-                // render={() =>
-                //   <SignIn
-                //     updateUser={this.updateUser}
-                //   />}
-      // <Redirect to = {{ pathname: "/signin"}}
-      />
-      </Router>
+            path="/signin"
+            component={SignIn}
+          // render={() =>
+          //   <SignIn
+          //     updateUser={this.updateUser}
+          //   />}
+          // <Redirect to = {{ pathname: "/signin"}}
+          />
+        </Router>
       )
-     
+
     }
     else {
-    //   if (this.state.redirectTo) {
-    //     return (
-    //       <Router>
-    //         <Redirect
-    //             to={{
-    //                 pathname: this.state.redirectTo,
-    //                 state: 
-    //                     {
-    //                         username: this.state.username
-    //                         // ,
-    //                         // fullname: this.state.fullname
-    //                     }
-    //                 ,
-    //             }}
-    //         />
-    //         </Router>
-    //     );
-    // }
-    return (
-      <Router>
-        <div>
-          <Navbar updateUser={this.updateUser} signedIn={this.state.signedIn} />
-          {/* greet user if logged in: */}
-          {this.state.signedIn ? "Signed In" : "Not Signed in"}
-          {console.log("this.state.loggedIn is " + this.state.signedIn)}
-          {this.state.signedIn &&
-            <p>Welcome, {this.state.username}!</p>
-          }
-          {this.state.signedIn &&
-            <p><button onClick={this.handleSignout}>Sign Out</button></p>
-          }
-          <Wrapper>
-            <Switch>
-              <Route exact path="/"  render={() =>
+      //   if (this.state.redirectTo) {
+      //     return (
+      //       <Router>
+      //         <Redirect
+      //             to={{
+      //                 pathname: this.state.redirectTo,
+      //                 state: 
+      //                     {
+      //                         username: this.state.username
+      //                         // ,
+      //                         // fullname: this.state.fullname
+      //                     }
+      //                 ,
+      //             }}
+      //         />
+      //         </Router>
+      //     );
+      // }
+      return (
+        <Router>
+          <div>
+            <Navbar updateUser={this.updateUser} signedIn={this.state.signedIn} />
+            {/* greet user if logged in: */}
+            {this.state.signedIn ? "Signed In" : "Not Signed in"}
+            {console.log("this.state.loggedIn is " + this.state.signedIn)}
+            {this.state.signedIn &&
+              <p>Welcome, {this.state.username}!</p>
+            }
+            {this.state.signedIn &&
+              <p><button onClick={this.handleSignout}>Sign Out</button></p>
+            }
+            <Wrapper>
+              <Switch>
+                <Route exact path="/" render={() =>
                   <SignIn
                     updateUser={this.updateUser}
                   />}
-                  />
-              <Route exact path="/guests" component={guests} />
-              <Route exact path="/registry" component={registry} />
-              <Route exact path="/toDo" component={toDo} />
-              <Route exact path="/signup" component={SignUp} />
-              {/* <Route exact path="/signin" component={SignIn} /> */}
-              <Route
-                path="/signin"
-                // component={SignIn}
-                render={() =>
-                  <SignIn
-                    updateUser={this.updateUser}
-                  />}
-              />
-            </Switch>
-          </Wrapper>
-          <Footer />
-        </div>
-      </Router>
-    );
+                />
+                <ProtectedRoute auth={this.state.signedIn} exact path="/guests" component={guests} />
+                <Route exact path="/registry" component={registry} />
+                <Route exact path="/toDo" component={toDo} />
+                <Route exact path="/signup" component={SignUp} />
+                {/* <Route exact path="/signin" component={SignIn} /> */}
+                <Route
+                  path="/signin"
+                  // component={SignIn}
+                  render={() =>
+                    <SignIn
+                      updateUser={this.updateUser}
+                    />}
+                />
+
+              </Switch>
+            </Wrapper>
+            <Footer />
+          </div>
+        </Router>
+      );
+    }
   }
-}
 }
 
 export default App;
+
+function ProtectedRoute({ component: Component, auth, ...rest }) {
+  console.log("PROTECTED ROUTE: ", auth)
+  return <Route {...rest} render={()=> auth ? <Component /> : <Redirect to="/signin" />} />
+}
