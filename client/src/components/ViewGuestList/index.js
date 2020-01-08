@@ -1,18 +1,27 @@
 import React from "react";
 import "./style.css";
 
-function ViewGuestList() {
+function ViewGuestList(props) {
+    console.log("from inside ViewGuestList, this is props.guestlist");
+    console.log(props.guestlist);
+
+    const attendees = props.guestlist.filter(guest => guest.RSVP!=="No" && guest.RSVP!=="")
+    console.log("attendees is");
+    console.log(attendees);
+
     return (
         <div id="container">
         <h1 className="header">Your Guests</h1>
         <div className="row">
             <div className="col-6">
                 <h2>Attending</h2>
+                 {attendees.map(attending => (
                 <div className="list-group" id="list-tab" role="tablist">
-                    <a className="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">guestname<button className="button muted-button">Edit</button></a>
-                    <a className="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">guestname<button className="button muted-button">Edit</button></a>
-                    <a className="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">guestname<button className="button muted-button">Edit</button></a>
-                </div>
+                    <a className="list-group-item" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
+                        {attending.firstName}
+                    </a>
+                </div>    
+                 ))}  
             </div>
             <div className="col-6">
                 <div className="tab-content" id="nav-tabContent">
@@ -26,7 +35,6 @@ function ViewGuestList() {
                 <h2>Cannot Attend</h2>
                 <div className="list-group" id="list-tab" role="tablist">
                     <a className="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">guestname<button className="button muted-button">Edit</button></a>
-                    <a className="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">guestname<button className="button muted-button">Edit</button></a>
                 </div>
             </div>
             <div className="col-6">
@@ -43,9 +51,6 @@ function ViewGuestList() {
                 <h2>Needs to RSVP</h2>
                 <div className="list-group" id="list-tab" role="tablist">
                     <a className="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">guestname<button className="button muted-button">Edit</button></a>
-                    <a className="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">guestname<button className="button muted-button">Edit</button></a>
-                    <a className="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">guestname<button className="button muted-button">Edit</button></a>
-                    <a className="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">guestname<button className="button muted-button">Edit</button></a>
                 </div>
             </div>
             <div className="col-6">
