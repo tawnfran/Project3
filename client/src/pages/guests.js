@@ -45,6 +45,9 @@ class Guests extends React.Component {
         console.log(this.state.id);
 
         axios.post("/api/guestlist", {
+
+            //front end needs to modify the below and the state in order to get (and therefore send below) firstName, lastName, RSVP, meal, and plusOne. Remove "guests", and "whoseList" stays the same.
+
             guests: this.state.guestname,
             whoseList: this.state.id
         }).then(response => {
