@@ -5,9 +5,11 @@ function ViewGuestList(props) {
     console.log("from inside ViewGuestList, this is props.guestlist");
     console.log(props.guestlist);
 
-    const attendees = props.guestlist.filter(guest => guest.RSVP!=="No" && guest.RSVP!=="")
+    const attendees = props.guestlist.filter(guest => guest.RSVP!=="No" && guest.RSVP!=="");
     console.log("attendees is");
     console.log(attendees);
+    const notComing = props.guestlist.filter(guest => guest.RSVP!=="Yes" && guest.RSVP!=="");
+    const notAnswered = props.guestlist.filter(guest => guest.RSVP!=="Yes" && guest.RSVP!=="No");
 
     return (
         <div id="container">
@@ -18,7 +20,7 @@ function ViewGuestList(props) {
                  {attendees.map(attending => (
                 <div className="list-group" id="list-tab" role="tablist">
                     <a className="list-group-item" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
-                        {attending.firstName}
+                        {attending.firstName} {attending.lastName} <button className="button muted-button">Edit</button>
                     </a>
                 </div>    
                  ))}  
@@ -33,9 +35,11 @@ function ViewGuestList(props) {
         <div className="row">
             <div className="col-6">
                 <h2>Cannot Attend</h2>
+                {notComing.map(noshows => (
                 <div className="list-group" id="list-tab" role="tablist">
-                    <a className="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">guestname<button className="button muted-button">Edit</button></a>
+                    <a className="list-group-item" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{noshows.firstName}  {noshows.lastName} <button className="button muted-button">Edit</button></a>
                 </div>
+                ))}
             </div>
             <div className="col-6">
                 <div className="tab-content" id="nav-tabContent">
@@ -49,9 +53,11 @@ function ViewGuestList(props) {
         <div className="row">
             <div className="col-6">
                 <h2>Needs to RSVP</h2>
+                {notAnswered.map(whoknows => (
                 <div className="list-group" id="list-tab" role="tablist">
-                    <a className="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">guestname<button className="button muted-button">Edit</button></a>
+                    <a className="list-group-item" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">{whoknows.firstName} {whoknows.lastName}<button className="button muted-button">Edit</button></a>
                 </div>
+                ))}
             </div>
             <div className="col-6">
                 <div className="tab-content" id="nav-tabContent">
