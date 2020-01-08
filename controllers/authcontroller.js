@@ -28,13 +28,8 @@ exports.user = function (req, res) {
           email: dbUser.email,
           password: dbUser.password
         };
-        res.json(userObject);
+        res.render("user", userObject);
       });
-  }
-  else {
-    res.json({
-      username: "Not signed in   -from authcontroller"
-    })
   }
 };
 
@@ -67,9 +62,29 @@ exports.signin = function (req, res) {
 //   res.render("shelf");
 // };
 
-exports.logout = function (req, res) {
+exports.signout = function (req, res) {
   // eslint-disable-next-line no-unused-vars
   req.session.destroy(function (err) {
     res.redirect("/signin");
   });
+};
+
+
+
+exports.guestlist = function (req, res) {
+  if (req.user) {
+    db.user
+      .findAll({
+        where: {
+          whoseList: req.user.id
+        }
+      })
+      .then(function (allGuests) {
+        let guestlistFull = [];
+        for(let i=0; i<allGuests.length; i++){
+          guestlistFull[i].push(allGuests[i]);
+        }
+        res.render("guestlist", guestlistFull);
+      });
+  }
 };
