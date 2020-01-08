@@ -102,6 +102,12 @@ class Guests extends React.Component {
         axios.get("/api/retrieveGuests").then(response => {
             console.log("getGuestlist() response is: ");
             console.log(response);
+            let guestlist = response.data;
+            console.log("guestlist is: ");
+            console.log(guestlist);
+        }).catch(error => {
+            console.log("Guestlist retrieval error:");
+            console.log(error);
         })
 
     }

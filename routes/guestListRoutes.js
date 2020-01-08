@@ -50,12 +50,15 @@ module.exports = function(app){
               }
             })
             .then(function (guests) {
+                console.log("guests");
               console.log(guests);
               var listOfGuests = [];
               for(let i=0; i<guests.length; i++){
-                listOfGuests.push(guests[i]);
+                listOfGuests.push(guests[i].dataValues);
               }
-              console.log("listOfGuests is:");
+            //   console.log("listOfGuests is:");
+            //   console.log(listOfGuests);
+              console.log("listOfGuests");
               console.log(listOfGuests);
                 // {
                 // user: req.user,
