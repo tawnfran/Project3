@@ -2,6 +2,9 @@
 import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import Jumbotron from "../components/jumbotron";
+import ViewGuestList from "../components/ViewGuestList"
+import CreateGuestList from "../components/CreateGuestList"
 import "../App";
 
 
@@ -12,11 +15,26 @@ class Guests extends React.Component {
             username: "",
             fullname: "",
             guestname: "",
-            id: null
+            id: null,
+            display: {
+                view: false,
+                create: false
+            }
         }
 
     }
 
+    showGuestList() {
+        console.log("changing state")
+        this.setState({ display: { view: !this.state.display.view, create: false } })
+    }
+
+    createGuestList() {
+        console.log("changing state!!")
+        this.setState({ display: { view: false, create: !this.state.display.create } })
+    }
+
+   
     /*
     
     TODO: 
@@ -110,18 +128,19 @@ class Guests extends React.Component {
         // }
         return (
 
+            
+
             <div className="container">
-                <div class="jumbotron">
-                    <h1 class="display-4">Welcome to your Guestlist!</h1>
-                    <p class="lead">If you have already created a guestlist on Save The Date, click view to manage to view and edit your list.</p>
-                    <hr class="my-4" />
-                    <p>If you are new to our site, click create a guestlist to get started!</p>
-                    <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">View Guestlist</a><div class="divider" />
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Create New Guestlist</a>
-                    </p>
-                </div>
-                <h1 className="header">Your Guests</h1>
+
+                <Jumbotron
+                    showGuestList={() => this.showGuestList()}
+                    createGuestList={() => this.createGuestList()}
+                />
+
+                {this.state.display.view && <ViewGuestList />}
+                {this.state.display.create && <CreateGuestList />}
+
+                {/* <h1 className="header">Your Guests</h1>
                 <div className="row">
                     <div className="col-6">
                         <div>Guest Name:
@@ -192,12 +211,12 @@ class Guests extends React.Component {
                             <div className="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                                 <div className="container">
                                     {/* <p>Full name: {this.props.location.state.fullname}</p> */}
-                                    {console.log("this.props is")}
-                                    {console.log(this.props)}
+                                    {/* {console.log("this.props is")}
+                                    {console.log(this.props)} */}
                                     {/* <p>Username: {this.props.location.state.username}</p>  */}
 
                                     {/* <p>Username: {this.props.location.state.username}</p> */}
-                                </div>
+                                {/* </div>
                             </div>
                             <div className="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
                             <div className="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"> lorem  </div>
@@ -205,9 +224,9 @@ class Guests extends React.Component {
                         </div>
                     </div>
                 </div>
+ */} 
 
-
-            </div >
+            </div>
         )
     }
 
