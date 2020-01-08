@@ -78,14 +78,13 @@ class Guests extends React.Component {
     }
 
     getGuestlist() {
+        axios.get("/api/retrieveGuests").then(response => {
+            console.log("getGuestlist() response is: ");
+            console.log(response);
+        })
 
     }
 
-    addGuest() {
-
-
-
-    }
 
 
 

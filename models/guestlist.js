@@ -5,14 +5,20 @@ module.exports = function (sequelize, Sequelize) {
             primaryKey: true,
             type: Sequelize.INTEGER
         },
-        guests: {
+        firstName: {
+            type: Sequelize.STRING
+        },
+        lastName: {
             type: Sequelize.STRING
         },
         RSVP: {
-            type: Sequelize.BOOLEAN
+            type: Sequelize.STRING
         },
         meal: {
             type: Sequelize.STRING
+        },
+        plusOne: {
+            type: Sequelize.BOOLEAN
         },
         createdAt: {
             type: Sequelize.DATE,

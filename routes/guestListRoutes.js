@@ -18,8 +18,13 @@ module.exports = function(app){
           console.log("whoseList is");
           console.log(whoseList);
           db.Guestlist.create({
-              guests: req.body.guests,
-              whoseList: whoseList
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              RSVP: req.body.RSVP,
+              meal: req.body.meal,
+              plusOne: req.body.plusOne,
+              whoseList: whoseList,
+
           })
             .then(function () {
                 console.log("New guest added!");
