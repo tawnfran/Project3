@@ -60,17 +60,6 @@ module.exports = function(app){
             //   console.log(listOfGuests);
               console.log("listOfGuests");
               console.log(listOfGuests);
-                // {
-                // user: req.user,
-                // username: dbUser.username,
-                // firstname: dbUser.firstname,
-                // lastname: dbUser.lastname,
-                // image: dbUser.image
-              //   username: dbUser.username,
-              //   password: dbUser.password,
-              //   fullname: dbUser.fullname,
-              //   email: dbUser.email
-              // };
               res.json(listOfGuests);
             });
         }

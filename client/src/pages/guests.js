@@ -123,25 +123,8 @@ class Guests extends React.Component {
 
 
     render() {
-        // if (this.state.redirectTo) {
-        //     return (
-        //         <Redirect
-        //             to={{
-        //                 pathname: this.state.redirectTo,
-        //                 state: 
-        //                     {
-        //                         username: this.state.username
-        //                         // ,
-        //                         // fullname: this.state.fullname
-        //                     }
-        //                 ,
-        //             }}
-        //         />
-        //     );
-        // }
+        
         return (
-
-            
 
             <div className="container">
 
