@@ -9,7 +9,7 @@ module.exports = function (app) {
     console.log("auth.js ran");
 
     // app.get("/api/signup", authController.signup);
-    app.get("/signup", authController.signup);
+    // app.get("/signup", authController.signup);
 
     // app.get("/api/signin", authController.signin);
     // app.get("/signin", authController.signin);
@@ -34,7 +34,7 @@ module.exports = function (app) {
 
     // app.get('/logout', authController.logout);
 
-    app.get("/signin", authController.signin);
+    // app.get("/signin", authController.signin);
  
  
     app.post('/signin', passport.authenticate("local-signin", {
